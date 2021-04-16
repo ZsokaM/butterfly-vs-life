@@ -10,8 +10,9 @@ class Rain{
             x: 0,
             y: 5,
         }
-        this.gravity = 1;
+        this.gravity = 0.25;
         this.friction = 0.3;
+        this.sound = rainPop;
     }
 
     draw(){

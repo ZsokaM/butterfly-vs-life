@@ -6,9 +6,9 @@ class Butterfly{
         this.height= 94.4;
         this.frameX= 0;
         this.frameY= 0;
-        this.speed= 2;
+        this.speed= 5;
         this.moving= false;
-        this.radius= 30
+        this.radius= 30;
     }
 
     draw(){
@@ -48,6 +48,7 @@ class Butterfly{
             this.frameX = 0;
         }
     }
+
 
     update(){
         this.draw();

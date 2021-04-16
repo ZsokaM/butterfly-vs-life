@@ -4,15 +4,22 @@ const butterflySprite = new Image();
 butterflySprite.src= "/Images/pillango.png";
 
 const background = new Image();
-background.src="/Images/mandy-choi-_qZ0us4az20-unsplash.jpg";
+background.src="/Images/eles.png";
 
 const rainDrop = new Image();
 rainDrop.src="/Images/water-drop.png";
 
 const flower = new Image();
-flower.src = "/Images/rose.png";
+flower.src = "/Images/sunflower.png";
+
+const rainPop = document.createElement('audio');
+rainPop.src = "/Sounds/NenadSimic - Muffled Distant Explosion.wav";
+
+const flowerPop = document.createElement('audio');
+flowerPop.src = "/Sounds/coin.wav";
 
 let score = 0;
+let remainingLife = 10;
 let gameFrame = 0;
 
 let player = new Butterfly();
@@ -34,28 +41,50 @@ function createFlowers(){
 }
 
 
-function crashFinder(item){
-        let dx = item.x - player.x;
-        let dy = item.x - player.y;
-        item.distance = Math.sqrt(dx*dx + dy*dy);
+function circleIntersect(x1, y1, r1, x2, y2, r2){
+    //calculates distance between two circles
+    let squareDistance = (x1-x2)*(x1-x2) + (y1-y2)* (y1-y2);
+    //when distance is smaller or equal to the sum of the two radius, the circles touch/overlap
+    return squareDistance <= ((r1+r2) *(r1+r2))
+}
 
-        if(item.distance < item.radius + player.radius){
-            //array.splice(array[i],1)
-            console.log("COLLISSION")
-            score++;            
-            //}
-        } 
+function detectCollision(anyArray){
+    let obstacle;
+
+    //start checking for collisions
+    for(let i =0; i<anyArray.length; i++){
+        obstacle = anyArray[i];
+
+        //comparing player with the given object
+        if(circleIntersect(player.x, player.y, player.radius, obstacle.x, obstacle.y, obstacle.radius)){
+            if(anyArray === dropsArray){
+                rainPop.play()
+                remainingLife --
+                console.log("RAIN boom")
+            }
+            if(anyArray === flowers){
+                flowerPop.play()
+                score++
+                console.log("FLOWER BOOM")
+            }
+            setTimeout(()=>{
+                anyArray.splice(i, 1)
+            }, 25)
+        }
+    }
 }
 
 
 //Animation loop
 
-
 function animate(){
     
     gameFrame += 1;
     
-    if(gameFrame % randomNumber(30, 50) === 0){
+    detectCollision(flowers);
+    detectCollision(dropsArray)
+
+    if(gameFrame % randomNumber(50, 70) === 0){
         rainDrops()
     }
 
@@ -65,7 +94,10 @@ function animate(){
 
     ctx.clearRect(0,0, canvas.width, canvas.height);
 
-    //ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    ctx.save()
+    ctx.globalAlpha = 0.5;
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    ctx.restore()
        
     player.update()
     
@@ -84,17 +116,19 @@ function animate(){
     })
         
     flowers.forEach(flo => {
-        flo.update()
+         flo.update()
     })
+   
+    
 
-    flowers.forEach(flo => {
-        crashFinder(flo)
-    })
-
-
-    ctx.fillText('score: ' + score, 10, 50)
+    ctx.font = "50px Arial white"
+    ctx.fillStyle = "white"
+    ctx.fillText('score: ' + score, canvas.width -200, 50)
+    ctx.fillText('life: ' + remainingLife, canvas.width -200, 100)
+    
     
     requestAnimationFrame(animate);
+
 }
 
 
