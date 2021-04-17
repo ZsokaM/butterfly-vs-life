@@ -2,7 +2,8 @@ class Rain{
     constructor(x,y,img, width, height){
         this.x = x;
         this.y = y;
-        this.img = img;
+        this.img = new Image();
+        this.img.src = '/Images/water-drop.png';
         this.width = 50;
         this.height = 50;
         this.radius = 30;
@@ -12,7 +13,8 @@ class Rain{
         }
         this.gravity = 0.25;
         this.friction = 0.3;
-        this.sound = rainPop;
+        this.sound = document.createElement('audio');
+        this.sound.src = "/Sounds/household_baby_lotion_movement_sudden_in_bottle.mp3"
     }
 
     draw(){
@@ -24,6 +26,7 @@ class Rain{
     drawDrop(){
         ctx.drawImage(this.img, this.x-25, this.y-25, this.width, this.height)
     }
+
 
     update(){
         this.draw()
@@ -42,7 +45,7 @@ class Rain{
         this.width -= 10;
         this.height -= 10;
         for(let i = 0; i<5; i++){
-            miniDrops.push(new SmallDrop(this.x,this.y, rainDrop, 10, 10))
+            miniDrops.push(new SmallDrop(this.x,this.y, 10, 10))
         }
     }
 }

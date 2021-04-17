@@ -13,18 +13,28 @@ html, body {
     align-items: center;
 }
 
-.main{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
+
+#start-button{
+    background-color: #fd7e14;
+    border-color: #fd7e14;
 }
 
 .footer {
+    font-family: sans-serif;
     font-size: 11px;
     color: grey;
+    text-align: center;
 }
 
 .special {
-    font-size: 20px;
-    color: purple;
+    font-size: 15px;
+    color: grey;
+}
+
+.doNotDisplay{
+    display: none;
+}
+
+.doDisplay{
+    display: block;
 }

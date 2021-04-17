@@ -9,6 +9,8 @@ class Butterfly{
         this.speed= 5;
         this.moving= false;
         this.radius= 30;
+        this.butterflySprite = new Image();
+        this.butterflySprite.src= "/Images/pillango.png";
     }
 
     draw(){
@@ -52,7 +54,7 @@ class Butterfly{
 
     update(){
         this.draw();
-        this.drawSprite(butterflySprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height,
+        this.drawSprite(this.butterflySprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height,
             player.x, player.y, player.width, player.height);
         this.moveButterfly();
         this.handleButterflyFrame();

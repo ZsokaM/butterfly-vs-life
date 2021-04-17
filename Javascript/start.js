@@ -1,10 +1,33 @@
+ const startButton = document.getElementById('start-button');
+
+let ctx = null;
+
+    startButton.addEventListener('click', function(e){
+        const main = document.getElementById('main');
+        const canvas = document.createElement('canvas');
+        ctx = canvas.getContext('2d');
+        canvas.width = innerWidth * 0.90;
+        canvas.height = innerHeight * 0.70;
+        canvas.style.border = "1px blue solid";
+        canvas.setAttribute('id', 'canvas');
+        main.appendChild(canvas);
+        startButton.setAttribute('class', 'doNotDisplay');
+        document.getElementById('footer').classList.remove('doNotDisplay');
+        document.getElementById('footer').classList.add('doDisplay');
+        
+        animate()
+    })
+
+ 
+
+
+
 //initial set up
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext('2d');
-canvas.width = innerWidth * 0.80;
-canvas.height = innerHeight * 0.80;
 
-
+// const canvas = document.getElementById("canvas");
+// const ctx = canvas.getContext('2d');
+// canvas.width = innerWidth * 0.90;
+// canvas.height = innerHeight * 0.70;
 
 //utility functions
 function randomNumber(min,max) {
@@ -29,6 +52,6 @@ window.addEventListener('keyup', function(e){
 })
 
 window.addEventListener("resize", function() {
-    canvas.width = innerWidth *0.80;
-    canvas.height = innerHeight *0.80;		
+    canvas.width = innerWidth *0.90;
+    canvas.height = innerHeight *0.90;		
 });

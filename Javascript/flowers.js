@@ -1,12 +1,15 @@
 class Flowers{
-    constructor(x, y, img, widht, height){
+    constructor(x, y, widht, height){
     this.x = x;
     this.y = y;
-    this.img = img;
+    this.img = new Image();
+    this.img.src="/Images/sunflower.png";
     this.width = 50;
     this.height = 50;
     this.radius = 30;
-    this.sound = flowerPop;
+    this.sound = document.createElement('audio');
+    this.sound.src = "/Sounds/coin.wav";
+
     }
 
     draw(){
