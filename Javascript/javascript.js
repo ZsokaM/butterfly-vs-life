@@ -1,4 +1,3 @@
-
 const background = new Image();
 background.src="/Images/eles.png";
 let score = 0;
@@ -10,6 +9,9 @@ const dropsArray = [];
 const miniDrops = [];
 const flowers = [];
 
+function randomNumber(min,max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function rainDrops(){
     let x = randomNumber(0, canvas.width);
@@ -33,7 +35,6 @@ function circleIntersect(x1, y1, r1, x2, y2, r2){
 
 function detectCollision(anyArray){
     let obstacle;
-
     //start checking for collisions
     for(let i =0; i<anyArray.length; i++){
         obstacle = anyArray[i];
@@ -45,13 +46,13 @@ function detectCollision(anyArray){
                     //obstacle.sound.play()
                     anyArray.splice(i, 1)
                     remainingLife --
-                    console.log("RAIN boom")
+                    //console.log("RAIN boom")
                     break;
                 case flowers:
                     //obstacle.sound.play()
                     anyArray.splice(i, 1)
                     score++
-                    console.log("FLOWER BOOM")
+                    //console.log("FLOWER BOOM")
                     break;
             }
     
@@ -59,11 +60,21 @@ function detectCollision(anyArray){
     }
 }
 
+function checkGameOver(){
+    if(remainingLife <=0){
+        cancelAnimationFrame(reqAnimFr)
+    }
+   if(score === 30){
+       cancelAnimationFrame(reqAnimFr)
+    }
+}
 
 //Animation loop
 
+let reqAnimFr = null;
+
 function animate(){
-    requestAnimationFrame(animate);
+    reqAnimFr = requestAnimationFrame(animate);
     
     gameFrame += 1;
     
@@ -84,9 +95,10 @@ function animate(){
     ctx.globalAlpha = 0.5;
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
     ctx.restore()
-       
-    player.update()
     
+    
+    player.update()
+
     dropsArray.forEach((drop, index) => {
         drop.update()
         if(drop.width === 0 && drop.height === 0){
@@ -109,8 +121,8 @@ function animate(){
     ctx.fillStyle = "white"
     ctx.fillText('score: ' + score, canvas.width -200, 50)
     ctx.fillText('life: ' + remainingLife, canvas.width -200, 100)
+
+    checkGameOver()
 }
 
-
-//animate()
 

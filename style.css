@@ -7,12 +7,18 @@ html, body {
     padding: 0;
 }
 
-.body {
+#body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.startingStatus{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
 
 #start-button{
     background-color: #fd7e14;
@@ -27,7 +33,7 @@ html, body {
 }
 
 .special {
-    font-size: 15px;
+    font-size: 13px;
     color: grey;
 }
 

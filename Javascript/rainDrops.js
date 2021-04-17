@@ -3,7 +3,7 @@ class Rain{
         this.x = x;
         this.y = y;
         this.img = new Image();
-        this.img.src = '/Images/water-drop.png';
+        this.img.src = '/Images/drop.png';
         this.width = 50;
         this.height = 50;
         this.radius = 30;
@@ -20,7 +20,7 @@ class Rain{
     draw(){
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI *2);
-        ctx.fill();
+        //ctx.fill();
         ctx.closePath();
     }
     drawDrop(){
