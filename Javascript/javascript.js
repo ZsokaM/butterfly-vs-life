@@ -1,10 +1,17 @@
 const background = new Image();
 background.src="/Images/eles.png";
+
+const winSound = document.createElement('audio');
+winSound.src = "/Sounds/zapsplat_multimedia_male_voice_processed_says_you_win_002_21573.mp3"
+
+const loseSound = document.createElement('audio');
+loseSound.src = "/Sounds/zapsplat_multimedia_male_voice_processed_says_you_lose_21571.mp3"
+
 let score = 0;
 let remainingLife = 10;
 let gameFrame = 0;
 
-let player = new Butterfly();
+const player = new Butterfly();
 const dropsArray = [];
 const miniDrops = [];
 const flowers = [];
@@ -38,33 +45,43 @@ function detectCollision(anyArray){
     //start checking for collisions
     for(let i =0; i<anyArray.length; i++){
         obstacle = anyArray[i];
-
         //comparing player with the given object
         if(circleIntersect(player.x, player.y, player.radius, obstacle.x, obstacle.y, obstacle.radius)){
             switch(anyArray){
                 case dropsArray:
-                    //obstacle.sound.play()
+                    obstacle.sound.play()
                     anyArray.splice(i, 1)
                     remainingLife --
                     //console.log("RAIN boom")
                     break;
                 case flowers:
-                    //obstacle.sound.play()
+                    obstacle.sound.play()
                     anyArray.splice(i, 1)
                     score++
                     //console.log("FLOWER BOOM")
                     break;
             }
-    
         }
     }
 }
 
 function checkGameOver(){
     if(remainingLife <=0){
+        ctx.save()
+        ctx.font = "100px Arial"
+        ctx.fillStyle = "white"
+        ctx.fillText('YOU LOSE', canvas.width*0.30, canvas.height/2)
+        ctx.restore()
+        loseSound.play()
         cancelAnimationFrame(reqAnimFr)
     }
    if(score === 30){
+        ctx.save()
+        ctx.font = "100px Arial"
+        ctx.fillStyle = "white"
+        ctx.fillText('YOU WIN', canvas.width*0.30, canvas.height/2)
+        ctx.restore()
+        winSound.play()
        cancelAnimationFrame(reqAnimFr)
     }
 }
@@ -96,7 +113,6 @@ function animate(){
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
     ctx.restore()
     
-    
     player.update()
 
     dropsArray.forEach((drop, index) => {
@@ -117,10 +133,10 @@ function animate(){
          flo.update()
     })
    
-    ctx.font = "50px Arial white"
-    ctx.fillStyle = "white"
-    ctx.fillText('score: ' + score, canvas.width -200, 50)
-    ctx.fillText('life: ' + remainingLife, canvas.width -200, 100)
+    ctx.font = "45px Arial"
+    ctx.strokeStyle = "#343a40"
+    ctx.strokeText('Score: ' + score, canvas.width -200, 50)
+    ctx.strokeText('Life: ' + remainingLife, canvas.width -200, 100)
 
     checkGameOver()
 }

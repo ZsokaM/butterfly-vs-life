@@ -20,9 +20,24 @@ html, body {
     transform: translate(-50%, -50%)
 }
 
-#start-button{
+.orangeButton{
     background-color: #fd7e14;
     border-color: #fd7e14;
+}
+
+.orangeButton:hover{
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.tealButton{
+    background-color: #20c994;
+    border-color: #20c994;
+}
+
+.tealButton:hover, .tealButton:active{
+    background-color: #198754;
+    border-color: #198754;
 }
 
 .footer {

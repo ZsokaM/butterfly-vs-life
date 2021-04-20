@@ -26,6 +26,5 @@ class Flowers{
     update(){
         this.draw();
         this.drawFlower();
-        
     }
 }

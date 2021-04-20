@@ -2,22 +2,20 @@ class Butterfly{
     constructor(){
         this.x = 200;
         this.y = 200;
-        this.width= 75;
-        this.height= 76.25;
+        this.width= 105;
+        this.height= 97.5;
         this.frameX= 0;
         this.frameY= 0;
-        this.speed= 5;
+        this.speed= 8;
         this.moving= false;
         this.radius= 40;
         this.butterflySprite = new Image();
-        this.butterflySprite.src= "/Images/jing.fm-animated-butterflies-clipart-2113544.png";
-        this.count = 0;
-        this.delay = 15;
+        this.butterflySprite.src= "/Images/npc_butterfly__x1_fly-top_png_1354829528 copy.png";
     }
 
     draw(){
         ctx.beginPath();
-        ctx.arc(this.x+35, this.y+32, this.radius, 0, Math.PI *2);
+        ctx.arc(this.x+55, this.y+50, this.radius, 0, Math.PI *2);
         //ctx.fill();
         ctx.closePath();
     }
@@ -29,33 +27,28 @@ class Butterfly{
     moveButterfly(){
         if(keys["ArrowUp"] && this.y > 0){
             this.y -= this.speed;
-            //this.frameY = 0;
         }
         if(keys["ArrowLeft"] && this.x > 0){
             this.x -= this.speed;
-            //this.frameY = 1;
         }
         if(keys["ArrowDown"] && this.y < canvas.height - this.height){
             this.y += this.speed;
-            //this.frameY = 0;
         }
         if(keys["ArrowRight"] && this.x < canvas.width - this.width){
             this.x += this.speed;
-            //this.frameY = 1;
         }
     }
 
     handleButterflyFrame(){
-        console.log(gameFrame)
-        if(gameFrame % 3===0){
-        if(this.frameX < 5 && this.moving || this.frameY < 5 && this.moving) { 
+        if(this.frameX < 12 && this.moving && this.frameY < 6) { 
             this.frameX++;
+        } else if(this.frameX === 12 && this.moving && this.frameY < 6){
             this.frameY++;
+            this.frameX++;
         } else {
             this.frameY = 0;
             this.frameX = 0;
         }
-    }
     }
 
     update(){
