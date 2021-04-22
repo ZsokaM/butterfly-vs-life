@@ -9,7 +9,6 @@ class Flowers{
     this.radius = 30;
     this.sound = document.createElement('audio');
     this.sound.src = "/Sounds/coin.wav";
-
     }
 
     draw(){
