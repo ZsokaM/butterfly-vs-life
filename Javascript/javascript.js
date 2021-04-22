@@ -52,13 +52,11 @@ function detectCollision(anyArray){
                     obstacle.sound.play()
                     anyArray.splice(i, 1)
                     remainingLife --
-                    //console.log("RAIN boom")
                     break;
                 case flowers:
                     obstacle.sound.play()
                     anyArray.splice(i, 1)
                     score++
-                    //console.log("FLOWER BOOM")
                     break;
             }
         }

@@ -16,7 +16,6 @@ class Butterfly{
     draw(){
         ctx.beginPath();
         ctx.arc(this.x+55, this.y+50, this.radius, 0, Math.PI *2);
-        //ctx.fill();
         ctx.closePath();
     }
 
