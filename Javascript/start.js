@@ -20,7 +20,6 @@ startButton.addEventListener('click', function(e){
     main.appendChild(canvas);
     
     startButton.setAttribute('class', 'doNotDisplay');
-    document.getElementById('footer').classList.remove('doNotDisplay');
     document.getElementById('footer').classList.add('doDisplay');
     document.getElementById('body').classList.remove('startingStatus');
 
@@ -33,8 +32,12 @@ startButton.addEventListener('click', function(e){
 
 
 resetBtn.addEventListener('click', function(e){
+    cancelAnimationFrame(reqAnimFr) 
     score = 0;
     remainingLife = 10;
+    ropsArray = [];
+    miniDrops = [];
+    flowers = [];
     animate()
 })
 
@@ -48,7 +51,7 @@ pauseBtn.addEventListener('click', function(e){
         cancelAnimationFrame(reqAnimFr) 
         pauseBtn.innerHTML = "Restart"
     } else{
-        reqAnimFr = requestAnimationFrame(animate)
+        animate()
         pauseBtn.innerHTML = "Pause"
     }       
 })
@@ -71,5 +74,5 @@ window.addEventListener('keyup', function(e){
 
 window.addEventListener("resize", function() {
     canvas.width = innerWidth *0.80;
-    canvas.height = innerHeight *0.70;		
+    canvas.height = innerHeight *0.65;		
 });
