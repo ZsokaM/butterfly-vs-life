@@ -10,7 +10,7 @@ class Butterfly{
         this.moving= false;
         this.radius= 35;
         this.butterflySprite = new Image();
-        this.butterflySprite.src= "/Images/npc_butterfly__x1_fly-top_png_1354829528 copy.png";
+        this.butterflySprite.src= "Images/npc_butterfly__x1_fly-top_png_1354829528 copy.png";
     }
 
     draw(){

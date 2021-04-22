@@ -3,7 +3,7 @@ class Rain{
         this.x = x;
         this.y = y;
         this.img = new Image();
-        this.img.src = '/Images/drop.png';
+        this.img.src = 'Images/drop.png';
         this.width = 50;
         this.height = 50;
         this.radius = 30;
@@ -14,7 +14,7 @@ class Rain{
         this.gravity = 0.25;
         this.friction = 0.3;
         this.sound = document.createElement('audio');
-        this.sound.src = "/Sounds/household_baby_lotion_movement_sudden_in_bottle.mp3"
+        this.sound.src = "Sounds/household_baby_lotion_movement_sudden_in_bottle.mp3"
     }
 
     draw(){

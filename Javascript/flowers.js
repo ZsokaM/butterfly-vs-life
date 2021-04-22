@@ -3,12 +3,12 @@ class Flowers{
     this.x = x;
     this.y = y;
     this.img = new Image();
-    this.img.src="/Images/sunflower.png";
+    this.img.src="Images/sunflower.png";
     this.width = 60;
     this.height = 60;
     this.radius = 30;
     this.sound = document.createElement('audio');
-    this.sound.src = "/Sounds/coin.wav";
+    this.sound.src = "Sounds/coin.wav";
     }
 
     draw(){
