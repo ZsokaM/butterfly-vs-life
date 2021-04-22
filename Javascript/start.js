@@ -35,7 +35,7 @@ resetBtn.addEventListener('click', function(e){
     cancelAnimationFrame(reqAnimFr) 
     score = 0;
     remainingLife = 10;
-    ropsArray = [];
+    dropsArray = [];
     miniDrops = [];
     flowers = [];
     animate()
@@ -48,6 +48,7 @@ pauseBtn.addEventListener('click', function(e){
         ctx.fillStyle = "white";
         ctx.fillText('PAUSED', canvas.width/2 -180, canvas.height/2)
         ctx.restore()
+        gameMusic.pause()
         cancelAnimationFrame(reqAnimFr) 
         pauseBtn.innerHTML = "Restart"
     } else{

@@ -18,9 +18,9 @@ let remainingLife = 10;
 let gameFrame = 0;
 
 const player = new Butterfly();
-const dropsArray = [];
-const miniDrops = [];
-const flowers = [];
+let dropsArray = [];
+let miniDrops = [];
+let flowers = [];
 
 function randomNumber(min,max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
@@ -49,7 +49,7 @@ function circleIntersect(x1, y1, r1, x2, y2, r2){
 function detectCollision(anyArray){
     let obstacle;
     //start checking for collisions
-    for(const item in anyArray){
+    for(let item in anyArray){
         obstacle = anyArray[item];
         //comparing player with the given object
         if(circleIntersect(player.x, player.y, player.radius, obstacle.x, obstacle.y, obstacle.radius)){
