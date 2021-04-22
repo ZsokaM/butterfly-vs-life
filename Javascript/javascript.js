@@ -1,11 +1,17 @@
 const background = new Image();
-background.src="/Images/eles.png";
+background.src="Images/eles.png";
+
+const gameMusic = document.createElement('audio');
+gameMusic.src = "Sounds/African_fun_long.mp3";
+gameMusic.volume = 0.5;
+gameMusic.loop = true;
+
 
 const winSound = document.createElement('audio');
-winSound.src = "/Sounds/zapsplat_multimedia_male_voice_processed_says_you_win_002_21573.mp3"
+winSound.src = "Sounds/zapsplat_multimedia_male_voice_processed_says_you_win_002_21573.mp3"
 
 const loseSound = document.createElement('audio');
-loseSound.src = "/Sounds/zapsplat_multimedia_male_voice_processed_says_you_lose_21571.mp3"
+loseSound.src = "Sounds/zapsplat_multimedia_male_voice_processed_says_you_lose_21571.mp3"
 
 let score = 0;
 let remainingLife = 10;
@@ -43,19 +49,19 @@ function circleIntersect(x1, y1, r1, x2, y2, r2){
 function detectCollision(anyArray){
     let obstacle;
     //start checking for collisions
-    for(let i =0; i<anyArray.length; i++){
-        obstacle = anyArray[i];
+    for(const item in anyArray){
+        obstacle = anyArray[item];
         //comparing player with the given object
         if(circleIntersect(player.x, player.y, player.radius, obstacle.x, obstacle.y, obstacle.radius)){
             switch(anyArray){
                 case dropsArray:
                     obstacle.sound.play()
-                    anyArray.splice(i, 1)
-                    remainingLife --
+                    anyArray.splice(item, 1)
+                    remainingLife--
                     break;
                 case flowers:
                     obstacle.sound.play()
-                    anyArray.splice(i, 1)
+                    anyArray.splice(item, 1)
                     score++
                     break;
             }
@@ -72,6 +78,7 @@ function checkGameOver(){
         ctx.restore()
         loseSound.play()
         cancelAnimationFrame(reqAnimFr)
+        gameMusic.pause()
     }
    if(score === 30){
         ctx.save()
@@ -80,7 +87,8 @@ function checkGameOver(){
         ctx.fillText('YOU WIN', canvas.width*0.30, canvas.height/2)
         ctx.restore()
         winSound.play()
-       cancelAnimationFrame(reqAnimFr)
+        cancelAnimationFrame(reqAnimFr)
+        gameMusic.pause()
     }
 }
 
@@ -91,16 +99,18 @@ let reqAnimFr = null;
 function animate(){
     reqAnimFr = requestAnimationFrame(animate);
     
+    gameMusic.play();
+
     gameFrame += 1;
     
     detectCollision(flowers);
     detectCollision(dropsArray);
 
-    if(gameFrame % randomNumber(50, 70) === 0){
+    if(gameFrame % randomNumber(40, 60) === 0){
         rainDrops()
     }
 
-    if(gameFrame % randomNumber(120, 150) === 0){
+    if(gameFrame % randomNumber(130, 150) === 0){
         createFlowers()
     }
 
@@ -138,5 +148,3 @@ function animate(){
 
     checkGameOver()
 }
-
-

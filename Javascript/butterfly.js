@@ -8,14 +8,14 @@ class Butterfly{
         this.frameY= 0;
         this.speed= 8;
         this.moving= false;
-        this.radius= 40;
+        this.radius= 35;
         this.butterflySprite = new Image();
         this.butterflySprite.src= "/Images/npc_butterfly__x1_fly-top_png_1354829528 copy.png";
     }
 
     draw(){
         ctx.beginPath();
-        ctx.arc(this.x+55, this.y+50, this.radius, 0, Math.PI *2);
+        ctx.arc(this.x+60, this.y+55, this.radius, 0, Math.PI *2);
         ctx.closePath();
     }
 
