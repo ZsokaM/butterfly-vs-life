@@ -22,6 +22,8 @@ startButton.addEventListener('click', function(e){
     startButton.setAttribute('class', 'doNotDisplay');
     document.getElementById('footer').classList.add('doDisplay');
     document.getElementById('body').classList.remove('startingStatus');
+    const parags = [...document.getElementsByClassName('parag')];
+    parags.forEach(p => p.classList.add('doNotDisplay'))
 
     const btnDiv = document.getElementById('btnDiv');
     btnDiv.appendChild(resetBtn);
